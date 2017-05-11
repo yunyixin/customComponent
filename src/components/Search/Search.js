@@ -88,7 +88,7 @@ export class Search extends React.Component {
           <input type="text" placeholder={placeholder} value={value} style={inputStyles}
                  onChange={this.handleInputChange}/>
           <div className="custom-search__button" onClick={this.handleSearchClick} style={{top}}>
-            <img src="/img/map_search.png" alt/>
+            <img src="img/map_search.png" alt/>
           </div>
         </div>
         <div className="custom-search__autocomplete" id="searchAutoComplete">
