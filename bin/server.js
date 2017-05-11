@@ -3,12 +3,19 @@ const path = require('path');   // 系统路劲模块
 const express = require('express');
 const serveIndex = require('serve-index');
 const favicon = require('serve-favicon');
+const serveStatic = require('serve-static');
 const _ = require('lodash');
 const env = require('../env');
 
 const app = express();
 const html = fs.readFileSync(path.resolve(__dirname, 'index.html'));
 const {host, port} = env.devServer;
+
+// local static serve
+app.use(serveStatic('static'));
+
+// express middleware
+app.use(favicon(path.join(__dirname, '..', 'static', 'avator.jpg')));
 
 app.use('/', serveIndex('src', {
   'icons': true,
@@ -22,9 +29,6 @@ app.use('/', serveIndex('src', {
     }));
   }
 }));
-
-// express middleware
-app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.jpg')));
 
 app.listen(port, host, function listen(err) {
   if (err) {
