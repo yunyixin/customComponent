@@ -1,0 +1,46 @@
+.radio-lists {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .custom-radio {
+    display: flex;
+    height: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+
+  .custom-radio__circle {
+    position: relative;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: #00aaff solid 1px;
+  }
+
+  .custom-radio__checked[data-checked=false] {
+    width: 12px;
+  }
+
+  .custom-radio__checked[data-checked=true] {
+    position: relative;
+    top: 6px;
+    left: -15px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background: #6699cc;
+  }
+
+  /*.custom-radio__circle[data-checked=true]:before {
+    position: relative;
+    left: -1px;
+    top: 0px;
+    content: "\2022";
+    color: #6699cc;
+    font-size: 3rem;
+    text-align: center;
+    line-height: 12px;
+  }*/
+}

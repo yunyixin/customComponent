@@ -1,0 +1,45 @@
+.custom-check-box {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.custom-check-box__item {
+  display: block;
+  height: 24px;
+  line-height: 24px;
+  //white-space: nowrap;
+  //text-overflow: ellipsis;o
+
+  .input__check-box {
+    position: relative;
+    top: 3px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    content: "";
+    margin-right: 4px;
+    border: #3797fc solid 1px;
+  }
+
+  .input__check-box[data-checked=true] {
+    width: 16px;
+    height: 16px;
+    border: 0;
+    background-color: #3797fc;
+  }
+
+  .input__check-box[data-checked=true]:before {
+    position: relative;
+    top: -2px;
+    content: "\2713";
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  img {
+    position: relative;
+    top: 2px;
+  }
+}
