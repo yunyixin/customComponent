@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Radio,
   CheckBox,
-  Lists
+  Lists,
+  Search
 } from '../../components';
 import './ShowComponent.scss';
 
@@ -81,6 +82,7 @@ export class ShowComponent extends React.Component {
           }
         </div>
         <Lists/>
+        <Search/>
       </div>
     );
   }
