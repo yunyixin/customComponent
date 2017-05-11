@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "server": "NODE_ENV=development nodemon --watch bin/server.js --watch bin/index.html --watch env.js bin/server.js",
-    "dev:server": "NODE_ENV=development webpack-dev-server --watch --colors",
+    "dev:server": "NODE_ENV=development webpack-dev-server --config webpack/dev.config.js --watch --colors",
     "start": "ENVIRONMENT=test concurrently --kill-others \"npm run server\" \"npm run dev:server\"",
+    "build": "NODE_ENV=production ENVIRONMENT=frontEnd webpack --config webpack/prod.config.js --progress --display-error-details --colors",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src",
     "precommit": "npm run lint"
@@ -40,12 +41,15 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-latest": "^6.24.0",
     "babel-preset-react": "^6.23.0",
+    "clean-webpack-plugin": "^0.1.16",
     "concurrently": "^3.4.0",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.27.3",
     "eslint": "^3.17.1",
     "eslint-loader": "^1.6.3",
     "eslint-plugin-react": "^6.10.0",
     "express": "^4.15.2",
+    "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "husky": "^0.13.2",
     "node-sass": "^4.5.0",
@@ -59,6 +63,7 @@
     "style-loader": "^0.14.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.4.2",
+    "webpack-merge": "^4.1.0"
   }
 }
