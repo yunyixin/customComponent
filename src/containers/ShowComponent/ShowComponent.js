@@ -1,5 +1,9 @@
 import React from 'react';
-import {Radio, CheckBox} from '../../components';
+import {
+  Radio,
+  CheckBox,
+  Lists
+} from '../../components';
 import './ShowComponent.scss';
 
 export class ShowComponent extends React.Component {
@@ -76,6 +80,7 @@ export class ShowComponent extends React.Component {
             ))
           }
         </div>
+        <Lists/>
       </div>
     );
   }

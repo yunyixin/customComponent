@@ -1,0 +1,34 @@
+.page-item___container {
+  margin-right: -1px;
+  padding: 0 5px;
+  border: 1px solid #b5b5b5;
+  border-radius: 16px;
+  min-width: 20px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #0074d9;
+  background-color: #fff;
+  font-size: .9rem;
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
+    background-color: #ececec; // #ececec;
+  }
+}
+
+.page-item___active {
+  background-color: #0074d9;
+  color: #ffffff;
+}
+
+.page-item___disable {
+  cursor: not-allowed;
+  background-color: #ececec;
+  color: #6e6e6e;
+
+  :hover {
+    background-color: #ececec;
+  }
+}

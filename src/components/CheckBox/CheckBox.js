@@ -5,7 +5,12 @@ import './CheckBox.scss';
 export class CheckBox extends React.Component {
 
   static propTypes = {
-    item: PropTypes.object,
+    item: PropTypes.shape({
+      'text': PropTypes.string,
+      'checked': PropTypes.bool,
+      // 'expand': PropTypes.bool,
+      'children': PropTypes.array
+    }),
     checkItem: PropTypes.func.isRequired,
     toggleExpand: PropTypes.func
   };
