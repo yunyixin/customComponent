@@ -6,7 +6,7 @@ export class CheckBox extends React.Component {
 
   static propTypes = {
     item: PropTypes.object,
-    checkItem: PropTypes.func,
+    checkItem: PropTypes.func.isRequired,
     toggleExpand: PropTypes.func
   };
 
@@ -27,13 +27,13 @@ export class CheckBox extends React.Component {
   }
 
   checkItem(item) {
-    const {indexClass} = this.props;
-    this.props.checkItem(item, indexClass);
+
+    this.props.checkItem(item);
   }
 
   toggleExpand(item) {
-    const {indexClass} = this.props;
-    this.props.toggleExpand(item, indexClass);
+
+    this.props.toggleExpand(item);
   }
 
   render() {

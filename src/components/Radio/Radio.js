@@ -6,13 +6,11 @@ export class Radio extends React.Component {
 
   static propTypes = {
     data: PropTypes.array,
-    checkedIndex: PropTypes.number,
     changeRadio: PropTypes.func.isRequired
   };
 
   static defaultProps = {
-    data: [{text: '一级'}, {text: '二级'}, {text: '三级'}],
-    checkedIndex: 0,
+    data: [{text: '一级', checked: true}, {text: '二级', checked: false}, {text: '三级', checked: false}],
     changeRadio: () => {
     }
   };
@@ -34,7 +32,7 @@ export class Radio extends React.Component {
         {
           data.map((item, i) => (
             <div key={i} className="custom-radio">
-              <div className="custom-radio__circle" onClick={() => changeRadio(i, item)}></div>
+              <div className="custom-radio__circle" onClick={() => changeRadio(item)}></div>
               <div className="custom-radio__checked" data-checked={item.checked}></div>
               <label>{item.text.length > 6 ? `${item.text.substr(0, 6)}...` : item.text}</label>
             </div>
