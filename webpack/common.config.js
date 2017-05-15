@@ -11,7 +11,7 @@ module.exports = {
 
   entry: {
     'app': ['./src/index.js'],
-    'vendor': ['./src/vendor.js']
+    'vendor': ['./src/vendor.js', 'font-awesome-webpack!./webpack/font-awesome.config.js']
   },
 
   resolve: {
