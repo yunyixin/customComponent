@@ -33,9 +33,11 @@ export class ShowComponent extends React.Component {
 
     this.chooseRadio = this.chooseRadio.bind(this);
     this.chooseCheckBox = this.chooseCheckBox.bind(this);
+    this.selectDropDown = this.selectDropDown.bind(this);
 
     this.state.dropDownLists = ['下拉列表1', '下拉列表2', '下拉列表3'].map((caption, i) => new ListItem({
       id: i,
+      data: caption,
       component: <div>{caption}</div>
     }));
   }
@@ -84,6 +86,12 @@ export class ShowComponent extends React.Component {
     this.setState({checkBoxLists});
   }
 
+  selectDropDown(item) {
+    // console.log(item);
+
+    this.setState({caption: item.data});
+  }
+
   render() {
 
     const {radioLists, checkBoxLists, caption, dropDownLists} = this.state;
@@ -101,7 +109,7 @@ export class ShowComponent extends React.Component {
         </div>
         <Lists/>
         <Search/>
-        <DropDown caption={caption} items={dropDownLists}/>
+        <DropDown caption={caption} items={dropDownLists} onSelect={this.selectDropDown}/>
       </div>
     );
   }
