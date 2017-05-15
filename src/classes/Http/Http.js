@@ -1,3 +1,4 @@
+/*
 import * as _ from 'lodash';
 import superagent from 'superagent';
 import Promise from 'bluebird';
@@ -78,3 +79,4 @@ export class Http {
   }
 
 }
+*/
