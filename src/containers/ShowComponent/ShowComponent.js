@@ -3,8 +3,10 @@ import {
   Radio,
   CheckBox,
   Lists,
-  Search
+  Search,
+  DropDown
 } from '../../components';
+import {ListItem} from '../../classes';
 import './ShowComponent.scss';
 
 export class ShowComponent extends React.Component {
@@ -24,12 +26,28 @@ export class ShowComponent extends React.Component {
         checked: false,
         expand: false,
         children: []
-      }]
+      }],
+      caption: '下拉框',
+      dropDownLists: []
     };
 
     this.chooseRadio = this.chooseRadio.bind(this);
     this.chooseCheckBox = this.chooseCheckBox.bind(this);
+
+    this.state.dropDownLists = ['下拉列表1', '下拉列表2', '下拉列表3'].map((caption, i) => new ListItem({
+      id: i,
+      component: <div>{caption}</div>
+    }));
   }
+
+  // componentDidMount() {
+  //   const dropDownLists = this.state.dropDownLists.map((caption, i) => new ListItem({
+  //     id: i,
+  //     component: <div>{label}</div>
+  //   }));
+  //
+  //   this.setState({dropDownLists});
+  // }
 
   chooseRadio(item) {
     // console.log('choose radio', item);
@@ -68,7 +86,7 @@ export class ShowComponent extends React.Component {
 
   render() {
 
-    const {radioLists, checkBoxLists} = this.state;
+    const {radioLists, checkBoxLists, caption, dropDownLists} = this.state;
 
     return (
       <div className="show-component">
@@ -83,6 +101,7 @@ export class ShowComponent extends React.Component {
         </div>
         <Lists/>
         <Search/>
+        <DropDown caption={caption} items={dropDownLists}/>
       </div>
     );
   }
