@@ -8,9 +8,9 @@ export class CheckBox extends React.Component {
     item: PropTypes.shape({
       'text': PropTypes.string,
       'checked': PropTypes.bool,
-      // 'expand': PropTypes.bool,
+      'expand': PropTypes.bool,
       'children': PropTypes.array
-    }),
+    }).isRequired,
     checkItem: PropTypes.func.isRequired,
     toggleExpand: PropTypes.func
   };
@@ -37,7 +37,7 @@ export class CheckBox extends React.Component {
   }
 
   toggleExpand(item) {
-
+    console.log('expand-item:', item);
     this.props.toggleExpand(item);
   }
 
