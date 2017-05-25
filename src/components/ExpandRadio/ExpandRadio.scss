@@ -1,0 +1,24 @@
+
+.expand-box {
+  height: 100%;  // title height
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .expand-box__second-elem {
+    position: relative;
+    left: 20px;
+  }
+
+  .expand-box__third-elem {
+    position: relative;
+    left: 20px;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .expand-box__four-elem {
+    position: relative;
+    left: 20px;
+  }
+}
