@@ -157,9 +157,49 @@ export class ShowComponent extends React.Component {
     this.setState({caption: item.data});
   }
 
+  level2(current, rootElem, indexArray) {
+    const children = rootElem.children.map((item, j) => {
+      if (j === indexArray[1]) {
+        return current;
+      }
+      return item;
+    });
+
+    return {
+      ...rootElem,
+      children
+    };
+  }
+
+  level3(current, rootElem, indexArray) {
+    const secondChildren = rootElem.children.map((secondItem, j) => {
+      if (j === indexArray[1]) {
+
+        const thirdChildren = secondItem.children.map((thirdItem, k) => {
+
+          if (k === indexArray[2]) {
+            return current;
+          }
+
+          return thirdItem;
+        });
+
+        return {
+          ...secondItem,
+          children: thirdChildren
+        };
+      }
+      return secondItem;
+    });
+
+    return {
+      ...rootElem,
+      children: secondChildren
+    };
+  }
+
   checkItem(item, indexArray) {
     const {menu} = this.state;
-
     const current = {
       ...item,
       checked: !item.checked,
@@ -176,60 +216,15 @@ export class ShowComponent extends React.Component {
     let currentRoot = {};
     const rootElem = menu[indexArray[0]];
 
-    const level1 = function () {
-      return current;
-    };
-
-    const level2 = function () {
-      const children = rootElem.children.map((item, j) => {
-        if (j === indexArray[1]) {
-          return current;
-        }
-        return item;
-      });
-
-      return {
-        ...rootElem,
-        children
-      };
-    };
-
-    const level3 = function () {
-      const secondChildren = menu[indexArray[0]].children.map((secondItem, j) => {
-        if (j === indexArray[1]) {
-
-          const thirdChildren = secondItem.children.map((thirdItem, k) => {
-
-            if (k === indexArray[2]) {
-              return current;
-            }
-
-            return thirdItem;
-          });
-
-          return {
-            ...secondItem,
-            children: thirdChildren
-          };
-        }
-        return secondItem;
-      });
-
-      return {
-        ...rootElem,
-        children: secondChildren
-      };
-    };
-
     switch (indexArray.length) {
       case 1:
-        currentRoot = level1();
+        currentRoot = current;
         break;
       case 2:
-        currentRoot = level2();
+        currentRoot = this.level2(current, rootElem, indexArray);
         break;
       case 3:
-        currentRoot = level3();
+        currentRoot = this.level3(current, rootElem, indexArray);
         break;
       default:
         break;
@@ -254,49 +249,21 @@ export class ShowComponent extends React.Component {
       expand: !item.expand
     };
 
-    // indexArray.length === 1
-    let currentRoot = current;
+    let currentRoot = {};
     const rootElem = menu[indexArray[0]];
 
-    if (indexArray.length === 2) {
-      const children = rootElem.children.map((item, j) => {
-        if (j === indexArray[1]) {
-          return current;
-        }
-        return item;
-      });
-
-      currentRoot = {
-        ...rootElem,
-        children
-      };
-    }
-
-    if (indexArray.length === 3) {
-      const secondChildren = rootElem.children.map((secondItem, j) => {
-        if (j === indexArray[1]) {
-
-          const thirdChildren = secondItem.children.map((thirdItem, k) => {
-
-            if (k === indexArray[2]) {
-              return current;
-            }
-
-            return thirdItem;
-          });
-
-          return {
-            ...secondItem,
-            children: thirdChildren
-          };
-        }
-        return secondItem;
-      });
-
-      currentRoot = {
-        ...rootElem,
-        children: secondChildren
-      };
+    switch (indexArray.length) {
+      case 1:
+        currentRoot = current;
+        break;
+      case 2:
+        currentRoot = this.level2(current, rootElem, indexArray);
+        break;
+      case 3:
+        currentRoot = this.level3(current, rootElem, indexArray);
+        break;
+      default:
+        break;
     }
 
     const newMenu = menu.map((item, i) => {

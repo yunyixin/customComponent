@@ -37,7 +37,7 @@ export class CheckBox extends React.Component {
   }
 
   toggleExpand(item) {
-    console.log('expand-item:', item);
+    // console.log('expand-item:', item);
     this.props.toggleExpand(item);
   }
 
