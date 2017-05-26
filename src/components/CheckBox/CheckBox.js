@@ -11,7 +11,7 @@ export class CheckBox extends React.Component {
       'expand': PropTypes.bool,
       'children': PropTypes.array
     }).isRequired,
-    checkItem: PropTypes.func.isRequired,
+    checkItem: PropTypes.func,
     toggleExpand: PropTypes.func
   };
 

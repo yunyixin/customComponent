@@ -44,39 +44,37 @@ export class ExpandRadio extends React.Component {
       <div className="expand-box">
         {
           menu.map((item, i) => {   // first menu
-            const level = item.text === '检验项' ? 3 : 4;
+            const level = 3;
             const {children} = item;
-            const first = <CheckBox key={`first${i}`} item={item} isCheckItem={false}
-                                    indexClass={[i]}
-                                    toggleExpand={this.toggleExpand}/>;
+            const first = <CheckBox key={`first${i}`} item={item}
+                                    toggleExpand={(item) => this.toggleExpand(item, [i])}/>;
             let second = null;
 
             if (children.length > 0 && item.expand) {
               second = children.map((secondItem, j) => {  // second menu
                 const {children} = secondItem;
-                const second = <CheckBox key={`second${j}`} item={secondItem} isCheckItem={false}
-                                         indexClass={[i, j]}
-                                         toggleExpand={this.toggleExpand}/>;
+                const second = <CheckBox key={`second${j}`} item={secondItem}
+                                         toggleExpand={(item) => this.toggleExpand(item, [i, j])}/>;
                 let third = null;
 
                 if (children.length > 0 && secondItem.expand) {  // third menu
 
                   if (level === 3) {
-                    third = <Radio data={children} changeRadio={(k, item) => this.changRadio(item, [i, j, k], secondItem)}/>;
+                    third =
+                      <Radio data={children} changeRadio={(k, item) => this.changRadio(item, [i, j, k], secondItem)}/>;
                   } else {
                     third = children.map((thirdItem, k) => {
                       const {children} = thirdItem;
 
                       const third = <CheckBox key={`third${k}`} item={thirdItem}
-                                              isCheckItem={false}
-                                              indexClass={[i, j, k]}
-                                              toggleExpand={this.toggleExpand}/>;
+                                              toggleExpand={(item) => this.toggleExpand(item, [i, j, k])}/>;
 
                       let four = null;
 
                       if (children.length > 0 && thirdItem.expand) {
 
-                        four = <Radio data={children} changeRadio={(l, item) => this.changRadio(item, [i, j, k, l], thirdItem)}/>;
+                        four = <Radio data={children}
+                                      changeRadio={(l, item) => this.changRadio(item, [i, j, k, l], thirdItem)}/>;
 
                       }
                       return (
