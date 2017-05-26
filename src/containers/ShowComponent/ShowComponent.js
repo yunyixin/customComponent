@@ -1,3 +1,4 @@
+/* eslint-disable max-lines*/
 import React from 'react';
 import {
   Radio,
@@ -161,39 +162,85 @@ export class ShowComponent extends React.Component {
 
     const current = {
       ...item,
-      checked: !item.checked
+      checked: !item.checked,
+      children: item.children.map((secondItem) => ({
+        ...secondItem,
+        checked: !item.checked,
+        children: secondItem.children.map((thirdItem) => ({
+          ...thirdItem,
+          checked: !item.checked
+        }))
+      }))
     };
 
+    let currentRoot = {};
+    const rootElem = menu[indexArray[0]];
+
     const level1 = function () {
-      return menu.map((item, i) => {
-        if (i === indexArray[0]) {
+      return current;
+    };
+
+    const level2 = function () {
+      const children = rootElem.children.map((item, j) => {
+        if (j === indexArray[1]) {
           return current;
         }
         return item;
       });
-    };
 
-    const level2 = function () {
-
+      return {
+        ...rootElem,
+        children
+      };
     };
 
     const level3 = function () {
+      const secondChildren = menu[indexArray[0]].children.map((secondItem, j) => {
+        if (j === indexArray[1]) {
 
+          const thirdChildren = secondItem.children.map((thirdItem, k) => {
+
+            if (k === indexArray[2]) {
+              return current;
+            }
+
+            return thirdItem;
+          });
+
+          return {
+            ...secondItem,
+            children: thirdChildren
+          };
+        }
+        return secondItem;
+      });
+
+      return {
+        ...rootElem,
+        children: secondChildren
+      };
     };
 
-    let newMenu = [];
     switch (indexArray.length) {
       case 1:
-        newMenu = level1();
+        currentRoot = level1();
         break;
       case 2:
-        newMenu = level2();
+        currentRoot = level2();
         break;
       case 3:
-        newMenu = level3();
+        currentRoot = level3();
         break;
-      default: break;
+      default:
+        break;
     }
+
+    const newMenu = menu.map((item, i) => {
+      if (i === indexArray[0]) {
+        return currentRoot;
+      }
+      return item;
+    });
 
     this.setState({menu: newMenu});
   }
